@@ -1,0 +1,85 @@
+/* -- RESET ALL ----------------------------------------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    background: transparent;
+}
+/* ------------------------------------------------------------ */
+body { 
+    background-color: #d1d1d1;
+}
+h2 {
+    border-bottom: 1px solid #b3b3b3;
+    font-size: 1.5em; 
+    margin: 0.4em 0px 0.4em 0px; 
+    padding-bottom: 0.1em;
+    color: #000000;
+}
+h3 { 
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0.8em 0px 0.5em 0px;
+}
+lable {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.strong {
+    font-weight: bold;
+    margin: 0.2em;
+}
+
+.apiDiv {
+    color: #202020;
+    text-decoration: none;
+    margin-bottom: 2.0em;
+}
+.apiDiv h4 {
+    display: block; 
+    background: #ffffff;
+    font-size:0.9em;
+    border-left: 6px solid #336600;
+    padding: 5px 8px;
+    margin: 0.5em 0px;
+}
+
+#gameArea {
+    border: 1px solid #000000;
+}
+
+#cameraImage {
+    border: 2px solid #000000;
+    display: block;
+    visibility: hidden; 
+    margin: 0.7em auto;
+}
+
+/* -- Table --------------------------------------------------------- */
+#deviceinfo {
+    width: 95%;
+    margin: 20px auto;
+}
+#deviceinfo td, #deviceinfo th {
+    padding:3px 7px 2px 7px;
+    text-align:right;
+    border: 1px solid #000000;
+    background-color:#ffffff;
+}
+#deviceinfo th {
+    font-size:1.15em;
+    padding-top:4px;
+    padding-bottom:4px;
+    background-color:#000000;
+    color:#ffffff;
+}
+#deviceinfo tr th.left, #deviceinfo tr td.left {
+    text-align:left;
+}
+
+

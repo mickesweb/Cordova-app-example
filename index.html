@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Exempelapplikation 2</title>
+        <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.0.1.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/jquery-1.7.1.min.js"></script>
+        <script src="js/jquery.mobile-1.0.1.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/cordova-1.5.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/app.menu.js"></script>
+    </head>
+    <body onload="init();">
+        <div data-role="page" class="type-interior" data-theme="c">
+            <div data-role="header" data-theme="e">
+                <h1>Exempelapplikation</h1>
+                <a href="#" data-icon="home" data-iconpos="notext" id="home" class="ui-btn-right">Hem</a>
+            </div>
+
+            <div data-role="content" data-theme="c">			
+                <div class="content-secondary">
+                    <div data-role="collapsible" id="menu" data-collapsed="true" data-theme="e" data-content-theme="e">
+                        <h3>Meny (Cordova API)</h3>
+                        <ul data-role="listview" data-theme="e" data-dividertheme="e">
+                            <li><a href="#apiAccelerometer">Accelerometer</a></li>
+                            <li><a href="#apiCamera">Kamera</a></li>
+                            <li><a href="#apiContacts">Kontakter</a></li>
+                            <li><a href="#apiMedia">Spela in</a></li>
+                            <li><a href="#apiNotification">Vibb eller popup?</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-primary">
+                    <div class="apiDiv" id="apiHome">
+                        <h2>Välkommen!</h2>
+                        <div>
+                            <p>Det här är en testapplikation där jag använt mig av delar av PhoneGap/Cordovas API. Det är dock bra ett smakprov, 
+                                då det finns ännu mer att använda, och saker utvecklas hela tiden.</p>
+                            <h4>Se: <a href="http://phonegap.com/">phonegap.com/</a> för mer information.</h4>
+                            <table id="deviceinfo">
+                                <tr>
+                                    <th>Enhet</th>
+                                    <th class="left">Värde</th>
+                                </tr>
+                                <tr>
+                                    <td>Name</td>
+                                    <td class="left"><strong id="name">&nbsp;</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Platform</td>
+                                    <td class="left"><strong id="platform">&nbsp;</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>OS Version</td>
+                                    <td class="left"><strong id="version">&nbsp;</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Cordova version</td>
+                                    <td class="left"><strong id="pgversion">&nbsp;</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>UUID</td>
+                                    <td class="left"><strong id="uuid">&nbsp;</strong></td>
+                                </tr>
+                                <tr>
+                                    <th>Skärm</th>
+                                    <th class="left">Värde</th>
+                                </tr>
+                                <tr>
+                                    <td>Bredd</td>
+                                    <td class="left"><strong id="width">&nbsp;</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Höjd</td>
+                                    <td class="left"><strong id="height">&nbsp;</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Disponibel bredd</td>
+                                    <td class="left"><strong id="availwidth">&nbsp;</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Disponibel höjd</td>
+                                    <td class="left"><strong id="availheight">&nbsp;</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Färgdjup</td>
+                                    <td class="left"><strong id="colorDepth">&nbsp;</strong></td>
+                                </tr> 					
+                            </table>			
+                        </div>		    					
+                    </div>
+
+                    <div class="apiDiv" id="apiAccelerometer">
+                        <h2>Accelerometer</h2>
+                        <p>Med hjälp av accelerometer kan man skapa rolika spel, eller visa hur man håller enheten. 
+                            Vill du prova använda det så tryck på spela så får du en liten känsla av hur det fungerar.</p>
+                        <h4>Försök håll enheten rakt när du börjar.</h4>   
+                        <div data-role="button" onclick="startGame();">Börja spela</div> 			
+                    </div>
+                    <div class="apiDiv" id="apiAccelerometerGame">
+                        <div data-role="button" onclick="stopGame();">Sluta spela</div>
+                        <canvas id="gameArea"></canvas> 			
+                    </div>
+
+                    <div class="apiDiv" id="apiCamera">
+                        <h2>Kamera/Bilder</h2>
+                        <p>Har du en kamera i den enhet kan du enkelt ta en bild, spara den och sedan se den här nedanför. 
+                            Om inte så kan du välja att hämta den ifrån ditt album på enheten. 
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a"><div data-role="button" onclick="takePhoto();">Ta en bild</div></div>
+                            <div class="ui-block-b"><div data-role="button" onclick="getFromAlbum();">Hämta från album</div></div>
+                        </div>				
+                        <img id="cameraImage" src="" />
+                    </div>
+
+                    <div class="apiDiv" id="apiContacts">
+                        <h2>Kontakter</h2>
+                        <p>Har du koll på hur många kontakter du har? om inte så kan du ta reda på det genom att trycka på "Hämta kontakter".
+                            Känner du att du har alldeles för några så kan du enkelt lägga till en ny här.</p>							
+                        <fieldset data-role="controlgroup">
+                            <lable>Namn:</lable> 
+                            <input type="text" name="addContact" id="addContact" value="" />
+                            <div data-role="button" onclick="addContact();">Lägg till ny</div>
+                        </fieldset>
+                        <div data-role="button" onclick="getContacts();">Hämta kontakter</div>
+                        <div id="contactsInfo"></div>
+                    </div>
+
+                    <div class="apiDiv" id="apiMedia">
+                        <h2>Spela in</h2>
+                        <p>Det är ofta man är på möten eller föredrag som man tänker att det här borde man spela in så att man kommer ihåg det.
+                            Då det är fullt möjligt med sin smartphone nu så är det bara öppna appen och spela in för framtida bruk. Här under kan du 
+                            testa den funktionaliteten.</p>
+                        <p class="strong">spela in (5 sek)</b>
+                        <div class="ui-grid-a">
+                            <div class="ui-block-a"><div data-role="button" onclick="record();">Spela in</div></div>
+                            <div class="ui-block-b"><div data-role="button" onclick="playback();">Spela upp</div></div>
+                        </div>	
+                        <p>Status: <span id="recordStatus"></span> <span id="recordTime"></span></p>
+                    </div>
+
+                    <div class="apiDiv" id="apiNotification">
+                        <h2>Vibb eller popup?</h2>
+                        <p>det går att kommunicera på många olika sätt, ett sätt genom ren text så här, ett annat genom ett pupuppfönster, ett tredje
+                            kan vara att spela upp en signal, eller varför inte sätta igång telefonens vibration? Sesta de olika sakerna genom att 
+                            trycka på knapparna här under.</p>
+                        <button onclick="popup();"data-icon="alert">Popup (alert)</button>	
+                        <button onclick="beep();"  data-theme="e">Ljudsignal</button>
+                        <button onclick="vibrate();">Vibration</button>  		
+                    </div>
+                </div>
+            </div>
+        </div>	
+        <!-- Load the javascript file last, will load the page a little faster. -->
+        <script type="text/javascript" charset="utf-8" src="js/app.camera.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/app.device.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/app.accelerometer.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/app.contacts.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/app.record.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/app.notification.js"></script>	
+    </body>
+</html>
